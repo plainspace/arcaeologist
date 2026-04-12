@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'self';">
+  <meta name="referrer" content="no-referrer">
+  <title>arcaeologist · a thorough Arc browser exporter</title>
+  <meta name="description" content="Dig up everything Arc Browser has on you — spaces, pinned tabs, folders, open tabs, and the auto-archived tabs other exporters miss. Free, open source, runs entirely in your browser.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="arcaeologist · a thorough Arc browser exporter">
+  <meta property="og:description" content="Dig up everything Arc Browser has on you — including the auto-archived tabs other exporters leave buried. Free, open source, client-side only.">
+  <meta property="og:image" content="https://plainspace.github.io/arcaeologist/assets/og.png">
+  <meta property="og:url" content="https://plainspace.github.io/arcaeologist/">
+  <meta property="og:site_name" content="arcaeologist">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="arcaeologist · a thorough Arc browser exporter">
+  <meta name="twitter:description" content="Dig up everything Arc Browser has on you — including the auto-archived tabs other exporters leave buried.">
+  <meta name="twitter:image" content="https://plainspace.github.io/arcaeologist/assets/og.png">
+
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="alternate icon" href="assets/favicon.svg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..900,0..100,0..1&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+  <a class="skip-link" href="#excavation">Skip to the tool</a>
+
+  <svg class="noise" aria-hidden="true" width="100%" height="100%">
+    <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="matrix" values="0 0 0 0 0.1, 0 0 0 0 0.08, 0 0 0 0 0.06, 0 0 0 0.35 0"/></filter>
+    <rect width="100%" height="100%" filter="url(#grain)"/>
+  </svg>
+
+  <svg class="topo" aria-hidden="true" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice">
+    <defs>
+      <pattern id="contours" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+        <path d="M0 100 Q 50 70 100 100 T 200 100" fill="none" stroke="currentColor" stroke-width="0.6" opacity="0.35"/>
+        <path d="M0 130 Q 50 110 100 130 T 200 130" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.25"/>
+        <path d="M0 70 Q 50 50 100 70 T 200 70" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.25"/>
+      </pattern>
+    </defs>
+    <rect width="100%" height="100%" fill="url(#contours)"/>
+  </svg>
+
+  <div class="page">
+
+    <header class="masthead">
+      <div class="masthead__mark">
+        <span class="roman">No. I</span>
+        <span class="sep">·</span>
+        <span class="field-notes">Field Notes</span>
+      </div>
+      <nav class="masthead__nav">
+        <a href="#excavation">The dig</a>
+        <a href="#why">Why</a>
+        <a href="#faq">FAQ</a>
+        <a href="https://github.com/plainspace/arcaeologist" class="nav-link--prime">GitHub</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <div class="hero__stamp" aria-hidden="true">
+        <span>MIT · Open Source</span>
+        <span class="stamp__date">Est. 2026</span>
+      </div>
+
+      <h1 class="display">
+        <span class="display__arc">arc</span><span class="display__tail">aeologist</span>
+      </h1>
+
+      <p class="lede">
+        A thorough excavation of your Arc Browser data. Spaces, pins, folders, open tabs, <em>and the auto-archived tabs other exporters leave buried</em>. Runs entirely in your browser. No servers. No payments. No data leaves your machine.
+      </p>
+
+      <div class="hero__cta">
+        <a href="#excavation" class="btn btn--prime">Begin excavation →</a>
+        <a href="#why" class="btn btn--ghost">What we dug up</a>
+      </div>
+
+      <div class="hero__meta">
+        <span class="meta-row">client-side only</span>
+        <span class="meta-row">Arc v1.79+</span>
+        <span class="meta-row">~1 second per 10K tabs</span>
+      </div>
+    </section>
+
+    <section class="manifesto">
+      <div class="manifesto__eyebrow">Brief</div>
+      <p class="manifesto__body">
+        Arc quietly files most of what you've ever opened. Pinned tabs get remembered. Folders get saved. But the tabs Arc auto-archives after a day, a week, a month... those are where years of research live. And every other exporter we tried walks right past them.
+      </p>
+      <p class="manifesto__body">
+        Recipe links. Job postings from 2023. The essay you meant to read. <em>arcaeologist</em> digs it out, filters the noise, groups it by the month it got buried, and hands it back in a standard HTML bookmarks file. <strong>Back it up. Move it somewhere else. Just own it.</strong> Your call.
+      </p>
+    </section>
+
+    <section class="exhibit" id="why">
+      <div class="exhibit__header">
+        <span class="section-num">II</span>
+        <h2 class="section-title">The exhibit</h2>
+        <p class="section-sub">Three tools. One matrix. No spin.</p>
+      </div>
+
+      <table class="matrix" aria-label="Feature comparison of arcaeologist, ArcEscape, and export-arc-bookmarks">
+        <thead>
+          <tr>
+            <th scope="col"><span class="visually-hidden">Feature</span></th>
+            <th scope="col"><span class="pill pill--ours">arcaeologist</span></th>
+            <th scope="col"><span class="pill">ArcEscape</span></th>
+            <th scope="col"><span class="pill">export-arc-bookmarks</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row" class="matrix__label">Pinned tabs &amp; nested folders</th>
+            <td class="matrix__cell good" aria-label="yes">✓</td>
+            <td class="matrix__cell good" aria-label="yes">✓</td>
+            <td class="matrix__cell partial">partial</td>
+          </tr>
+          <tr class="matrix__row--highlight">
+            <th scope="row" class="matrix__label">Auto-archived tabs<small>&nbsp;the buried years</small></th>
+            <td class="matrix__cell good">✓ with month folders</td>
+            <td class="matrix__cell bad" aria-label="no">—</td>
+            <td class="matrix__cell bad" aria-label="no">—</td>
+          </tr>
+          <tr>
+            <th scope="row" class="matrix__label">Open (unpinned) tabs</th>
+            <td class="matrix__cell good">✓ per space</td>
+            <td class="matrix__cell partial">partial</td>
+            <td class="matrix__cell bad" aria-label="no">—</td>
+          </tr>
+          <tr>
+            <th scope="row" class="matrix__label">Per-profile favorites<small>&nbsp;separated, not jumbled</small></th>
+            <td class="matrix__cell good" aria-label="yes">✓</td>
+            <td class="matrix__cell bad">mixed</td>
+            <td class="matrix__cell bad">mixed</td>
+          </tr>
+          <tr>
+            <th scope="row" class="matrix__label">One bookmarks file <em>per space</em></th>
+            <td class="matrix__cell good">✓ + combined zip</td>
+            <td class="matrix__cell bad" aria-label="no">—</td>
+            <td class="matrix__cell bad" aria-label="no">—</td>
+          </tr>
+          <tr>
+            <th scope="row" class="matrix__label">Chrome/Safari import works</th>
+            <td class="matrix__cell good" aria-label="yes">✓</td>
+            <td class="matrix__cell good" aria-label="yes">✓</td>
+            <td class="matrix__cell partial">"first space only"</td>
+          </tr>
+          <tr>
+            <th scope="row" class="matrix__label">Price</th>
+            <td class="matrix__cell good">free · MIT</td>
+            <td class="matrix__cell partial">free tier capped · $5 unlimited</td>
+            <td class="matrix__cell good">free · MIT</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="excavation" id="excavation">
+      <div class="exhibit__header">
+        <span class="section-num">III</span>
+        <h2 class="section-title">The dig site</h2>
+        <p class="section-sub">Drop your two JSON files. Everything happens in this tab. No upload, no account, no trace.</p>
+      </div>
+
+      <div class="tray">
+        <div class="tray__corner tray__corner--tl" aria-hidden="true"></div>
+        <div class="tray__corner tray__corner--tr" aria-hidden="true"></div>
+        <div class="tray__corner tray__corner--bl" aria-hidden="true"></div>
+        <div class="tray__corner tray__corner--br" aria-hidden="true"></div>
+
+        <div class="tray__label">Excavation Tray · <span class="mono">Specimen Intake</span></div>
+
+        <div class="drop" id="drop">
+          <label for="file-input" class="drop__label">
+            <div class="drop__icon" aria-hidden="true">
+              <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.3">
+                <path d="M24 6v26M24 32l-10-10M24 32l10-10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M6 38h36" stroke-linecap="round" stroke-dasharray="3 3"/>
+              </svg>
+            </div>
+            <span class="drop__title">Drop your Arc JSON files here</span>
+            <small class="drop__hint">or click to pick them · <code>StorableSidebar.json</code> + <code>StorableArchiveItems.json</code></small>
+          </label>
+          <input type="file" id="file-input" accept=".json,application/json" multiple>
+        </div>
+
+        <div class="specimen">
+          <div class="specimen__row"><span class="specimen__key">Sidebar</span><span class="specimen__val mono" id="sidebar-filename">— awaiting specimen —</span></div>
+          <div class="specimen__row"><span class="specimen__key">Archive</span><span class="specimen__val mono" id="archive-filename">— optional —</span></div>
+        </div>
+
+        <div class="status status--info" id="status">Drop both files to begin.</div>
+        <div class="preview" id="preview" aria-live="polite"></div>
+        <details id="warnings" hidden></details>
+
+        <div class="actions">
+          <button id="export-btn" class="btn btn--prime" disabled>Download combined bookmarks.html</button>
+          <button id="export-all-btn" class="btn btn--prime-alt" disabled>Download everything (zip) ↓</button>
+        </div>
+
+        <div class="per-space-wrap" id="per-space-wrap" hidden>
+          <p class="per-space-label">Or take a single space:</p>
+          <div id="per-space" class="per-space"></div>
+        </div>
+      </div>
+
+      <aside class="footnote">
+        <strong>Where are the files?</strong>
+        <div class="footnote__platforms">
+          <div class="footnote__platform">
+            <span class="footnote__os">macOS</span>
+            <code>~/Library/Application Support/Arc/StorableSidebar.json</code>
+            <code>~/Library/Application Support/Arc/StorableArchiveItems.json</code>
+            <span class="footnote__hint">In Finder, press ⌘⇧G and paste the path.</span>
+          </div>
+          <div class="footnote__platform">
+            <span class="footnote__os">Windows<em> (likely, untested)</em></span>
+            <code>%LOCALAPPDATA%\Arc\User Data\StorableSidebar.json</code>
+            <code>%LOCALAPPDATA%\Arc\User Data\StorableArchiveItems.json</code>
+            <span class="footnote__hint">If your install is different, <a href="https://github.com/plainspace/arcaeologist/issues/new">open an issue</a> with the correct path.</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="howto">
+      <div class="exhibit__header">
+        <span class="section-num">IV</span>
+        <h2 class="section-title">Curation &amp; cataloguing</h2>
+        <p class="section-sub">Your download is a standard Netscape bookmarks file. Import anywhere:</p>
+      </div>
+      <ul class="howto__list">
+        <li><strong>Chrome / Brave / Edge:</strong> Settings → Bookmarks → Import bookmarks and settings → HTML file</li>
+        <li><strong>Firefox:</strong> Bookmarks → Manage bookmarks → Import and Backup → Import Bookmarks from HTML</li>
+        <li><strong>Safari:</strong> File → Import From → Bookmarks HTML File</li>
+        <li><strong>Zen / Vivaldi / DuckDuckGo:</strong> Settings → Import bookmarks → HTML file</li>
+      </ul>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="exhibit__header">
+        <span class="section-num">V</span>
+        <h2 class="section-title">Correspondence</h2>
+      </div>
+
+      <details>
+        <summary>Does anything leave my machine?</summary>
+        <p>No. The page is a static HTML file. Your JSON files are read in your browser via <code>FileReader</code>, parsed in memory, written to a download Blob, and discarded when you close the tab. There is no backend, no analytics, no telemetry, no tracking pixel, no third-party fetch of any kind. Check the Network tab.</p>
+      </details>
+
+      <details>
+        <summary>Why "auto-archived tabs only"?</summary>
+        <p>Arc records two kinds of archive events: <code>auto</code> (a tab aged out of your sidebar because Arc's auto-archive timer closed it) and <code>manual</code> (you closed it deliberately). The <code>manual</code> events are tabs you wanted gone — exporting them is noise. The <code>auto</code> events are the years of research you didn't know you had. Those are what we dig up.</p>
+      </details>
+
+      <details>
+        <summary>Why are my favorites duplicated across four spaces?</summary>
+        <p>Because Arc genuinely stores them that way. Arc's favorites (the top-row icons) are tied to a Chrome <em>profile</em>, not a space. If Personal, Money, Work, and Music all share your default profile, they share one favorites row in Arc's UI. We preserve that faithfully in the export — each space's file is standalone and includes its favorites.</p>
+      </details>
+
+      <details>
+        <summary>Will this work after Arc updates?</summary>
+        <p>Probably. Arc's on-disk JSON format has been stable for years. If they ship a breaking change, the parser logs warnings instead of crashing, and the code is short enough to patch in an afternoon. Open an issue.</p>
+      </details>
+
+      <details>
+        <summary>Can I run it offline?</summary>
+        <p>Yes. Clone the repo, open <code>index.html</code> in any modern browser. The fonts load from Google Fonts the first time; after that everything is local. If you want fully offline, self-host the fonts or remove the font link.</p>
+      </details>
+
+      <details>
+        <summary>I have 50,000 archived tabs. Will it crash?</summary>
+        <p>Probably not. Tested against ~13K archived items and ~7K live items — parses in under a second, dedupes, writes a ~700 KB HTML file. If yours is much larger and it chokes, open an issue with your item counts.</p>
+      </details>
+    </section>
+
+    <section class="gratitude" aria-labelledby="gratitude-title">
+      <div class="exhibit__header">
+        <span class="section-num">VI</span>
+        <h2 class="section-title" id="gratitude-title">With gratitude</h2>
+        <p class="section-sub">If <em>arcaeologist</em> saved you two hours of grief, pay it forward. Entirely optional. Forever free regardless.</p>
+      </div>
+      <div class="gratitude__cards">
+        <a class="gratitude__card gratitude__card--gh" href="https://github.com/sponsors/plainspace" rel="noopener">
+          <div class="gratitude__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+          </div>
+          <div>
+            <strong>Sponsor on GitHub</strong>
+            <small>recurring or one-time · 0% fees</small>
+          </div>
+          <span class="gratitude__chev" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <footer class="colophon">
+      <div class="colophon__left">
+        <span class="colophon__mark">arcaeologist</span>
+        <span>MIT · <a href="https://github.com/plainspace/arcaeologist">source</a> · <a href="https://github.com/plainspace/arcaeologist/issues">issues</a> · <a href="https://github.com/sponsors/plainspace">sponsor</a></span>
+      </div>
+      <div class="colophon__right">
+        <span>Set in <a href="https://fonts.google.com/specimen/Fraunces">Fraunces</a>, <a href="https://fonts.google.com/specimen/Instrument+Sans">Instrument Sans</a>, <a href="https://fonts.google.com/specimen/JetBrains+Mono">JetBrains Mono</a>.</span>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="src/parser.js"></script>
+  <script src="src/exporter.js"></script>
+  <script src="src/zip.js"></script>
+  <script src="src/app.js"></script>
+</body>
+</html>
