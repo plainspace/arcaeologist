@@ -214,18 +214,25 @@
 
       <aside class="footnote">
         <strong>Where are the files?</strong>
+        <p class="footnote__intro">Both JSON files live in one folder. Copy the <em>folder</em> path (not the filename) — that's what Finder's <span class="mono">Go to Folder</span> and Explorer's address bar want — then grab both files inside.</p>
         <div class="footnote__platforms">
           <div class="footnote__platform">
             <span class="footnote__os">macOS</span>
-            <code>~/Library/Application Support/Arc/StorableSidebar.json</code>
-            <code>~/Library/Application Support/Arc/StorableArchiveItems.json</code>
-            <span class="footnote__hint">In Finder, press ⌘⇧G and paste the path.</span>
+            <div class="footnote__pathrow">
+              <code class="footnote__folder">~/Library/Application Support/Arc/</code>
+              <button type="button" class="copy-btn" data-copy="~/Library/Application Support/Arc/" aria-label="Copy the macOS Arc folder path to clipboard">Copy folder</button>
+            </div>
+            <span class="footnote__files">Inside: <code>StorableSidebar.json</code> + <code>StorableArchiveItems.json</code></span>
+            <span class="footnote__hint">In Finder press ⌘⇧G, paste, hit Enter — you land in the folder.</span>
           </div>
           <div class="footnote__platform">
             <span class="footnote__os">Windows<em> (likely, untested)</em></span>
-            <code>%LOCALAPPDATA%\Arc\User Data\StorableSidebar.json</code>
-            <code>%LOCALAPPDATA%\Arc\User Data\StorableArchiveItems.json</code>
-            <span class="footnote__hint">If your install is different, <a href="https://github.com/plainspace/arcaeologist/issues/new">open an issue</a> with the correct path.</span>
+            <div class="footnote__pathrow">
+              <code class="footnote__folder">%LOCALAPPDATA%\Arc\User Data\</code>
+              <button type="button" class="copy-btn" data-copy="%LOCALAPPDATA%\Arc\User Data\" aria-label="Copy the Windows Arc folder path to clipboard">Copy folder</button>
+            </div>
+            <span class="footnote__files">Inside: <code>StorableSidebar.json</code> + <code>StorableArchiveItems.json</code></span>
+            <span class="footnote__hint">Paste into File Explorer's address bar. Wrong path? <a href="https://github.com/plainspace/arcaeologist/issues/new">Open an issue</a>.</span>
           </div>
         </div>
       </aside>

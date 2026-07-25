@@ -145,9 +145,53 @@ function renderPerSpaceButtons(tree) {
   if (wrap) wrap.hidden = tree.spaces.length === 0;
 }
 
+async function copyText(text) {
+  try {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return true;
+    }
+  } catch (_) {
+    // fall through to the execCommand path (e.g. file:// or denied permission)
+  }
+  try {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.top = "-1000px";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    const ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch (_) {
+    return false;
+  }
+}
+
+function wireCopyButtons() {
+  for (const btn of document.querySelectorAll(".copy-btn")) {
+    if (!btn.dataset.label) btn.dataset.label = btn.textContent;
+    btn.addEventListener("click", async () => {
+      const ok = await copyText(btn.getAttribute("data-copy") || "");
+      btn.textContent = ok ? "Copied ✓" : "Press ⌘C";
+      btn.classList.toggle("is-copied", ok);
+      clearTimeout(btn._resetTimer);
+      btn._resetTimer = setTimeout(() => {
+        btn.textContent = btn.dataset.label;
+        btn.classList.remove("is-copied");
+      }, 1800);
+    });
+  }
+}
+
 function wire() {
   const pick = $("#file-input");
   pick.addEventListener("change", (e) => handleFiles([...e.target.files]));
+
+  wireCopyButtons();
 
   const drop = $("#drop");
   ["dragenter", "dragover"].forEach((ev) =>

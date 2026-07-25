@@ -935,6 +935,78 @@ details#warnings pre {
   word-break: break-all;
 }
 
+.footnote__intro {
+  margin: -6px 0 18px;
+  max-width: 62ch;
+  line-height: 1.55;
+}
+
+.footnote__intro em {
+  font-style: normal;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.footnote__pathrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.footnote__folder {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--ink);
+  font-weight: 500;
+  background: rgba(28, 20, 16, 0.08);
+}
+
+.copy-btn {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--terracotta-deep);
+  background: rgba(255, 253, 246, 0.9);
+  border: 1px solid var(--terracotta);
+  padding: 6px 11px;
+  border-radius: 999px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.16s var(--ease);
+}
+
+.copy-btn:hover {
+  background: var(--terracotta);
+  color: var(--paper);
+  transform: translateY(-1px);
+}
+
+.copy-btn:focus-visible {
+  outline: 2px solid var(--terracotta);
+  outline-offset: 2px;
+}
+
+.copy-btn.is-copied {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+.footnote__files {
+  color: var(--ink-mute);
+  margin-top: 2px;
+}
+
+.footnote__files code {
+  font-size: 10px;
+}
+
 .footnote__hint {
   color: var(--ink-mute);
   font-style: italic;
